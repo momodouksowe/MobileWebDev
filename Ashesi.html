@@ -22,11 +22,7 @@
 			}
 		</script>
 
-		<script src="js/lib/jquery.js"></script>
-		<!-- your scripts here -->
-		<script src="js/app/app.js"></script>
-		<script src="js/app/bootstrap.js"></script>
-		<script src="js/lib/jquery.mobile.js"></script>
+
 		<style>
 			.ui-selectmenu.ui-popup .ui-input-search {
 				margin-left: .5em;
@@ -97,10 +93,10 @@
 				<br />
 
 				<button id="geolocation">Geolocation</button>
-				<div><center><img class ="lazy" style="display: none;width: 100%; height: 100%;" id="smallImage" src=""/></center></div>
+				<!-- <div><center><img class ="lazy" style="display: none;width: 100%; height: 100%;" id="geolocation" src=""/></center></div> -->
 				<br />
 				<button id="scanner">Scanner</button>
-				<div><center><img class ="lazy" style="display: none;width: 100%; height: 100%;" id="smallImage" src=""/></center></div>
+				<!-- <div><center><img class ="lazy" style="display: none;width: 100%; height: 100%;" id="scanner" src=""/></center></div> -->
 				<br/>
 
 			</div><!-- /content -->
@@ -262,9 +258,15 @@
 
 			</div><!-- /content -->
 		</div><!-- /page -->
+		<script src="js/lib/jquery.js"></script>
+		<script src="js/index.js"></script>
+		<!-- your scripts here -->
+		<script src="js/app/app.js"></script>
+		<script src="js/app/bootstrap.js"></script>
+		<script src="js/lib/jquery.mobile.js"></script>
 
 	</body>
-	<script>
+	<!-- <script>
 		$.mobile.document
 		// "filter-menu-menu" is the ID generated for the listview when it is created
 		// by the custom selectmenu plugin. Upon creation of the listview widget we
@@ -307,5 +309,6 @@
 			// it looks better that way.
 			.textinput("option", "inset", !placeInDialog).end().prependTo(destination);
 		});
-	</script>
+	</script> -->
+
 </html>
