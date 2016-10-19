@@ -6,6 +6,7 @@
 
 
 	function onDeviceReady(){
+		console.log(device);
 		alert("we are here");
 		pictureSource = navigator.camera.pictureSource;
 		destinationType = navigator.camera.destinationType;
