@@ -13,15 +13,13 @@
 	}
 
 
- 	document.getElementById('capturePhoto').onclick = function(){
- 		alert("Am here!");
+ 	document.getElementById('capturePhoto').addEventListener("click", function(){
 		navigator.camera.getPicture(onPhotoDataSuccess, onFail,{
 		quality : 50, allowEdit: true, destinationType : DestinationType.DATA_URL
   });
- }
+ });
 
     document.getElementById('geolocation').addEventListener("click",function(){
- 		alert("Am here!");
 		navigator.geolocation.getCurrentPosition(onSuccess,onError, {enableHighAccuracy: true
 	});
  });
@@ -39,9 +37,8 @@
 
   function onSuccess(position){
   	//var element = document.getElementById('geolocation');
-  	alert('Latitude:' + position.coords.latitude +'<br>'+
-  					    'Longitude: '+ position.coords.longitude + '<br>'+
-  					    '<br> ');
+  	alert('Latitude:' + position.coords.latitude +'\n'+
+  					    'Longitude: '+ position.coords.longitude + '\n');
   					    
   }
 
