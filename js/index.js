@@ -1,15 +1,14 @@
 (function(){
 	
-	document.addEventListener('deviceready', onDeviceReady.bind(this),false);
+	document.addEventListener("deviceready", onDeviceReady.bind(this),false);
 	var destinationType;
 	var pictureSource;
 
 
 	function onDeviceReady(){
-		console.log(device);
-		alert("we are here");
-		pictureSource = navigator.camera.pictureSource;
-		destinationType = navigator.camera.destinationType;
+			alert("we are here");
+		pictureSource = navigator.camera.PictureSourceType;
+		destinationType = navigator.camera.DestinationType;
 
 	}
 
@@ -17,14 +16,15 @@
  	document.getElementById('capturePhoto').onclick = function(){
  		alert("Am here!");
 		navigator.camera.getPicture(onPhotoDataSuccess, onFail,{
-		quality : 50, destinationType : destinationType.DATA_URL
+		quality : 50, allowEdit: true, destinationType : DestinationType.DATA_URL
   });
- };
+ }
 
-    document.getElementById('geolocation').onclick = function(){
+    document.getElementById('geolocation').addEventListener("click",function(){
  		alert("Am here!");
-		var watchID = navigator.geolocation.watchPosition(onSuccess,onError, {timeout:5000});
- };
+		navigator.geolocation.getCurrentPosition(onSuccess,onError, {enableHighAccuracy: true
+	});
+ });
 
 
  function onPhotoDataSuccess(imagedata){
@@ -39,9 +39,9 @@
 
   function onSuccess(position){
   	//var element = document.getElementById('geolocation');
-  	alert('Latitude:' + position.coords.Latitude +'<br>'+
-  					    'Longitude: '+ position.coords.Latitude + '<br>'+
-  					    '<hr /> ');
+  	alert('Latitude:' + position.coords.latitude +'<br>'+
+  					    'Longitude: '+ position.coords.longitude + '<br>'+
+  					    '<br> ');
   					    
   }
 
@@ -49,13 +49,4 @@
   	alert('code: '+ error.code + '\n'+ 'message: '+error.message+'\n');
   }
 
-  // var watchID = navigator.geolocation.watchPosition(onSuccess,onError,timeout);
 }) ();
-// 	function onPhotoURLSuccess(imageURL){
-// 	var largeimage = document.getElementById('smallimage');
-// 	largeimage.style.display ='block';
-// 	largeimage.src.="data:image/jpeg;base64," +imageURL;
-// };
-
-
-// });
