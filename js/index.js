@@ -6,18 +6,16 @@
 
 
 	function onDeviceReady(){
-			alert("we are here");
 		pictureSource = navigator.camera.PictureSourceType;
 		destinationType = navigator.camera.DestinationType;
-
 	}
 
 
- 	document.getElementById('capturePhoto').addEventListener("click", function(){
+ 	document.getElementById('capturePhoto').onclick = function(){
 		navigator.camera.getPicture(onPhotoDataSuccess, onFail,{
 		quality : 50, allowEdit: true, destinationType : DestinationType.DATA_URL
   });
- });
+ }
 
     document.getElementById('geolocation').addEventListener("click",function(){
 		navigator.geolocation.getCurrentPosition(onSuccess,onError, {enableHighAccuracy: true
