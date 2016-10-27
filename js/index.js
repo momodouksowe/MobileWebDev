@@ -15,6 +15,7 @@
 		navigator.camera.getPicture(onPhotoDataSuccess, onFail,{
 		quality : 50, allowEdit: true, destinationType : DestinationType.DATA_URL
   });
+		alert("Am here!");
  }
 
     document.getElementById('geolocation').addEventListener("click",function(){
