@@ -12,11 +12,9 @@
 
 
  	document.getElementById('capturePhoto').onclick = function(){
-		navigator.camera.getPicture(onPhotoDataSuccess, onFail,{
-		quality : 50, allowEdit: true, destinationType : DestinationType.DATA_URL
-  });
-		alert("Am here!");
- }
+		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+  }
 
     document.getElementById('geolocation').addEventListener("click",function(){
 		navigator.geolocation.getCurrentPosition(onSuccess,onError, {enableHighAccuracy: true
@@ -25,6 +23,7 @@
 
 
  function onPhotoDataSuccess(imagedata){
+ 	alert("Am here");
 	var smallImage = document.getElementById('smallImage');
 	smallImage.style.display ='block';
 	smallImage.src="data:image/jpeg;base64," +imagedata;
