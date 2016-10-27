@@ -1,48 +1,70 @@
-(function(){
-	
-	document.addEventListener("deviceready", onDeviceReady.bind(this),false);
-	var destinationType;
+﻿(function() {
+
+	document.addEventListener('deviceready', onDeviceReady.bind(this), false);
 	var pictureSource;
-
-
-	function onDeviceReady(){
+	var destinationType;
+	function onDeviceReady() {
 		pictureSource = navigator.camera.PictureSourceType;
 		destinationType = navigator.camera.DestinationType;
+
+		document.getElementById("capturePhoto").onclick = function() {
+			navigator.camera.getPicture(onPhotoDataSuccess, onFail, {
+				quality : 50,
+
+				destinationType : destinationType.DATA_URL
+			});
+		}
+		document.getElementById("geolocationdata").addEventListener("click", function() {
+			navigator.geolocation.getCurrentPosition(onSuccess, onError, {
+				enableHighAccuracy : true
+			});
+		});
+
+		//watchPosition
+		var watchId = navigator.geolocation.watchPosition(onWatchSuccess, onWatchError, {
+			timeout : 30000
+		});
+
+		document.getElementById("clearWatchbtn").addEventListener("click", function() {
+			navigator.geolocation.clearWatch(watchID);
+		});
+	};
+	function onPhotoDataSuccess(imageData) {
+
+		var smallImage = document.getElementById('smallImage');
+
+		smallImage.style.display = 'block';
+
+		smallImage.src = "data:image/jpeg;base64," + imageData;
+
 	}
 
+	function onFail(message) {
 
- 	document.getElementById('capturePhoto').onclick = function(){
- 		alert("Am here");
-		navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
-        destinationType: destinationType.DATA_URL 
-    });
-  }
+		alert('Failed because: ' + message);
 
-    document.getElementById('geolocation').addEventListener("click",function(){
-		navigator.geolocation.getCurrentPosition(onSuccess,onError, {enableHighAccuracy: true
-	});
- });
+	}
 
+	///////////geolocation bit/////////////////
+	var onSuccess = function(position) {
+		alert('Latitude: ' + position.coords.latitude + '\n' + 'Longitude: ' + position.coords.longitude + '\n');
+	};
 
- function onPhotoDataSuccess(imagedata){
-	var smallImage = document.getElementById('smallImage');
-	smallImage.style.display ='block';
-	smallImage.src="data:image/jpeg;base64," +imagedata;
-}
+	// onError Callback receives a PositionError object
+	//
+	function onError(error) {
+		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+	}
 
-  function onFail(message){
-	alert("Failed because: "+ message);
-  }
+	//watchPosition
 
-  function onSuccess(position){
-  	//var element = document.getElementById('geolocation');
-  	alert('Latitude:' + position.coords.latitude +'\n'+
-  					    'Longitude: '+ position.coords.longitude + '\n');
-  					    
-  }
+	var onWatchSuccess = function(position) {
+		var element = document.getElementById('divWatchMeMove');
+		element.innerHTML = 'Latitude: ' + position.coords.latitude + '<br />' + 'Longitude: ' + position.coords.longitude + '<br />' + '<hr />' + element.innerHTML;
+	};
 
-  function onError(error){
-  	alert('code: '+ error.code + '\n'+ 'message: '+error.message+'\n');
-  }
+	function onWatchError(error) {
+		alert('code: ' + error.code + '\n' + 'message: ' + error.message + '\n');
+	}
 
-}) ();
+})();
