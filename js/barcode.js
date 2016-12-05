@@ -8,7 +8,8 @@ var app = {
 	onDeviceReady:function(){
 		$(function (){
 			$('#decode').click(function(){
-				Cordova.plugins.barcodeScanner.scan(
+				alert("Am here!");
+				cordova.plugins.barcodeScanner.scan(
 					function(result){
 						alert("Information: "+ result.txt+ "\n"+"format: "+ result.format+"\n");
 					},
